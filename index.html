@@ -1,241 +1,134 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPO Utility - Wiki & Builds</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&display=swap" rel="stylesheet">
-    <style>
-        /* Reset y fondo oscuro */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: #0f0f0f;
-            /* Un gradiente sutil de fondo para darle profundidad */
-            background-image: radial-gradient(circle at center, #1a1a20 0%, #0f0f0f 100%);
-            font-family: 'Montserrat', sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-            color: white;
-        }
-
-        /* Título superior */
-        .page-title {
-            margin-bottom: 40px;
-            font-size: 2.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-align: center;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-        }
-
-        .page-title span {
-            color: #00FFFF; /* Cyan brillante */
-        }
-
-        /* El Grid del Panal */
-        .honeycomb {
-            display: grid;
-            /* 5 columnas de 160px de ancho */
-            grid-template-columns: repeat(5, 160px);
-            /* Filas de 150px de alto para el traslape perfecto */
-            grid-auto-rows: 150px;
-            gap: 10px;
-        }
-
-        /* Contenedor de cada Hexágono */
-        .hex {
-            position: relative;
-            width: 160px;
-            height: 180px;
-            cursor: pointer;
-            transition: transform 0.2s ease, filter 0.2s ease;
-            text-decoration: none;
-        }
-
-        /* Efecto Hover */
-        .hex:hover {
-            transform: scale(1.08);
-            filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.3));
-            z-index: 10;
-        }
-
-        /* El fondo gris del borde */
-        .hex-bg {
-            position: absolute;
-            inset: 0;
-            background-color: #4a4a4a;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            z-index: 1;
-            transition: background-color 0.2s ease;
-        }
-
-        /* Cambia el color del borde al pasar el mouse */
-        .hex:hover .hex-bg {
-            background-color: #00FFFF;
-        }
-
-        /* El fondo oscuro interior */
-        .hex-bg::before {
-            content: '';
-            position: absolute;
-            inset: 3px; /* Grosor del borde */
-            background-color: #1a1a1f; /* Un tono más oscuro y azulado */
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        }
-
-        /* La imagen del icono */
-        .hex-icon {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 110px;
-            height: 110px;
-            object-fit: contain;
-            z-index: 2;
-            pointer-events: none;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
-        }
-
-        /* El texto */
-        .hex-text {
-            position: absolute;
-            bottom: 22px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 800;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
-            z-index: 2;
-            width: 100%;
-            pointer-events: none;
-            letter-spacing: 0.5px;
-        }
-
-        /* =========================================
-           POSICIONAMIENTO EXACTO EN EL PANAL
-           ========================================= */
-        .races             { grid-column: 2; grid-row: 1; }
-        .fishing           { grid-column: 4; grid-row: 1; }
-        
-        .swords            { grid-column: 1; grid-row: 2; }
-        .islands           { grid-column: 3; grid-row: 2; }
-        .fighting-styles   { grid-column: 5; grid-row: 2; }
-        
-        .fruits            { grid-column: 2; grid-row: 3; }
-        .bosses            { grid-column: 4; grid-row: 3; }
-        
-        .accessories       { grid-column: 1; grid-row: 4; }
-        .battle-royale     { grid-column: 3; grid-row: 4; }
-        .traveling-merchant{ grid-column: 5; grid-row: 4; }
-        
-        .npcs              { grid-column: 2; grid-row: 5; }
-        .abilities         { grid-column: 4; grid-row: 5; }
-
-        /* Responsive para celulares */
-        @media (max-width: 900px) {
-            .honeycomb { transform: scale(0.7); margin-bottom: -100px; }
-            .page-title { font-size: 1.8rem; padding: 0 20px; }
-        }
-        @media (max-width: 600px) {
-            .honeycomb { transform: scale(0.5); margin-bottom: -200px; }
-        }
-    </style>
+    <title>gankn | utility</title>
+    
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tu hoja de estilos -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="home-theme">
 
-    <h1 class="page-title">GPO <span>UTILITY</span></h1>
+    <div class="custom-cursor"></div>
 
-    <div class="honeycomb">
-        <!-- FILA 1 -->
-        <a href="races.html" class="hex races">
-            <div class="hex-bg"></div>
-            <img src="https://placehold.co/110x110/transparent/white?text=Races" alt="Races" class="hex-icon">
-            <span class="hex-text">Races</span>
-        </a>
-
-        <a href="fishing.html" class="hex fishing">
-            <div class="hex-bg"></div>
-            <img src="https://placehold.co/110x110/transparent/white?text=Fishing" alt="Fishing" class="hex-icon">
-            <span class="hex-text">Fishing</span>
-        </a>
-
-        <!-- FILA 2 -->
-        <a href="swords.html" class="hex swords">
-            <div class="hex-bg"></div>
-            <img src="https://placehold.co/110x110/transparent/white?text=Swords" alt="Swords" class="hex-icon">
-            <span class="hex-text">Swords</span>
-        </a>
-
-        <a href="islands.html" class="hex islands">
-            <div class="hex-bg"></div>
-            <img src="https://placehold.co/110x110/transparent/white?text=Islands" alt="Islands" class="hex-icon">
-            <span class="hex-text">Islands</span>
-        </a>
-
-        <a href="fighting.html" class="hex fighting-styles">
-            <div class="hex-bg"></div>
-            <img src="https://placehold.co/110x110/transparent/white?text=Fighting" alt="Fighting Styles" class="hex-icon">
-            <span class="hex-text">Fighting Styles</span>
-        </a>
-
-        <!-- FILA 3 -->
-        <a href="fruits.html" class="hex fruits">
-            <div class="hex-bg"></div>
-            <img src="https://placehold.co/110x110/transparent/white?text=Fruits" alt="Fruits" class="hex-icon">
-            <span class="hex-text">Fruits</span>
-        </a>
-
-        <a href="bosses.html" class="hex bosses">
-            <div class="hex-bg"></div>
-            <img src="https://placehold.co/110x110/transparent/white?text=Bosses" alt="Bosses" class="hex-icon">
-            <span class="hex-text">Bosses</span>
-        </a>
-
-        <!-- FILA 4 -->
-        <a href="accessories.html" class="hex accessories">
-            <div class="hex-bg"></div>
-            <img src="https://placehold.co/110x110/transparent/white?text=Accessories" alt="Accessories" class="hex-icon">
-            <span class="hex-text">Accessories</span>
-        </a>
-
-        <a href="battle-royale.html" class="hex battle-royale">
-            <div class="hex-bg"></div>
-            <img src="https://placehold.co/110x110/transparent/white?text=Battle+Royale" alt="Battle Royale" class="hex-icon">
-            <span class="hex-text">Battle Royale</span>
-        </a>
-
-        <a href="merchant.html" class="hex traveling-merchant">
-            <div class="hex-bg"></div>
-            <img src="https://placehold.co/110x110/transparent/white?text=Merchant" alt="Traveling Merchant" class="hex-icon">
-            <span class="hex-text">Traveling Merchant</span>
-        </a>
-
-        <!-- FILA 5 -->
-        <a href="npcs.html" class="hex npcs">
-            <div class="hex-bg"></div>
-            <img src="https://placehold.co/110x110/transparent/white?text=NPCs" alt="NPCs" class="hex-icon">
-            <span class="hex-text">NPCs</span>
-        </a>
-
-        <a href="abilities.html" class="hex abilities">
-            <div class="hex-bg"></div>
-            <img src="https://placehold.co/110x110/transparent/white?text=Abilities" alt="Abilities" class="hex-icon">
-            <span class="hex-text">Abilities</span>
-        </a>
+    <!-- Pantalla de inicio -->
+    <div id="start-screen">
+        <div id="start-text"></div>
     </div>
 
+    <!-- Video de fondo (Cambia la URL por tu propio video si quieres) -->
+    <video id="background" class="video-background" autoplay loop muted playsinline webkit-playsinline>
+        <source src="https://cdn.pixabay.com/video/2020/07/30/45961-444720970_large.mp4" type="video/mp4">
+    </video>
+
+    <div class="glitch-overlay"></div>
+    <div id="hacker-overlay" class="hidden"></div>
+    <div id="snow-overlay" class="hidden"></div>
+
+    <!-- PERFIL DE GANKN -->
+    <div id="profile-block" class="hidden">
+        <div class="profile-header">
+            <div class="profile-container">
+                <!-- CAMBIA ESTA URL POR TU FOTO -->
+                <img src="https://i.pinimg.com/736x/8a/8c/3b/8a8c3b0b7d0b4b3d4b3d4b3d4b3d4b3d.jpg" alt="gankn" class="profile-picture">
+            </div>
+            <div class="profile-info">
+                <div class="name-and-badges">
+                    <div id="profile-name">gankn</div>
+                    <div class="badge-group">
+                        <!-- Iconos en lugar de imágenes locales -->
+                        <i class="badge fa-solid fa-circle-check" title="Verified"></i>
+                        <i class="badge fa-solid fa-code" title="Developer"></i>
+                        <i class="badge fa-solid fa-crown" title="Owner"></i>
+                        <i class="badge fa-solid fa-skull" title="Hated"></i>
+                    </div>
+                </div>
+                <div id="profile-bio"></div>
+            </div>
+        </div>
+        
+        <div class="bio-separator"></div>
+        
+        <div class="profile-footer">
+            <div class="social-links">
+                <a href="https://github.com/gankn" class="social-icon" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="social-icon" target="_blank"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" class="social-icon" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-icon" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+            </div>
+            <div class="visitor-counter">
+                <i class="fa-solid fa-eye visitor-icon"></i>
+                <span id="visitor-count">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- BLOQUE DE SKILLS (Oculto) -->
+    <div id="skills-block" class="hidden">
+        <h2 class="skills-title">Programming Skills</h2>
+        <div class="skill">
+            <div class="skill-name"><span>Python</span><span>87%</span></div>
+            <div class="skill-bar-container"><div id="python-bar" class="skill-bar"></div></div>
+        </div>
+        <div class="skill">
+            <div class="skill-name"><span>C++</span><span>75%</span></div>
+            <div class="skill-bar-container"><div id="cpp-bar" class="skill-bar"></div></div>
+        </div>
+        <div class="skill">
+            <div class="skill-name"><span>C#</span><span>80%</span></div>
+            <div class="skill-bar-container"><div id="csharp-bar" class="skill-bar"></div></div>
+        </div>
+    </div>
+
+    <div id="results-button-container" class="hidden">
+        <button id="results-theme">View Results</button>
+        <div id="results-hint" class="hidden">Click again to return to profile</div>
+    </div>
+
+    <!-- Botones de los 5 Temas -->
+    <div class="controls">
+        <div id="home-theme" class="theme-button">1</div>
+        <div id="hacker-theme" class="theme-button">2</div>
+        <div id="rain-theme" class="theme-button">3</div>
+        <div id="anime-theme" class="theme-button">4</div>
+        <div id="car-theme" class="theme-button">5</div>
+    </div>
+
+    <!-- Controles de Audio -->
+    <div class="top-controls">
+        <div class="volume-control">
+            <svg id="volume-icon" class="volume-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+            </svg>
+            <input id="volume-slider" class="volume-slider" type="range" min="0" max="1" step="0.01" value="0.3">
+        </div>
+        <div class="transparency-control">
+            <svg class="transparency-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+            </svg>
+            <input id="transparency-slider" class="transparency-slider" type="range" min="0" max="1" step="0.01" value="0.7">
+        </div>
+    </div>
+
+    <!-- Audios (Puedes cambiar los src por tus propios archivos mp3) -->
+    <audio id="background-music" loop><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3"></audio>
+    <audio id="hacker-music" loop muted><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3"></audio>
+    <audio id="rain-music" loop muted><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mp3"></audio>
+    <audio id="anime-music" loop muted><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" type="audio/mp3"></audio>
+    <audio id="car-music" loop muted><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" type="audio/mp3"></audio>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- Tu Script -->
+    <script src="script.js"></script>
 </body>
 </html>
