@@ -1,1 +1,213 @@
-<h1>prueba</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPO Wiki - Navigation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Reset y fondo oscuro */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0f0f0f;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* El Grid del Panal */
+        .honeycomb {
+            display: grid;
+            /* 5 columnas de 160px de ancho */
+            grid-template-columns: repeat(5, 160px);
+            /* Filas de 150px de alto. Los hexágonos medirán 180px, lo que crea el traslape perfecto */
+            grid-auto-rows: 150px;
+            gap: 10px;
+        }
+
+        /* Contenedor de cada Hexágono */
+        .hex {
+            position: relative;
+            width: 160px;
+            height: 180px;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+            text-decoration: none;
+        }
+
+        /* Efecto Hover (se agranda un poco y brilla) */
+        .hex:hover {
+            transform: scale(1.08);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+            z-index: 10;
+        }
+
+        /* El fondo gris del borde */
+        .hex-bg {
+            position: absolute;
+            inset: 0;
+            background-color: #4a4a4a;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: 1;
+        }
+
+        /* El fondo oscuro interior */
+        .hex-bg::before {
+            content: '';
+            position: absolute;
+            inset: 3px; /* Grosor del borde */
+            background-color: #212124;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        /* La imagen del icono */
+        .hex-icon {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            z-index: 2; /* Por encima del fondo */
+            pointer-events: none; /* Para que el clic pase al contenedor */
+        }
+
+        /* El texto */
+        .hex-text {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 800;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+            z-index: 2;
+            width: 100%;
+            pointer-events: none;
+            letter-spacing: 0.5px;
+        }
+
+        /* =========================================
+           POSICIONAMIENTO EXACTO EN EL PANAL
+           ========================================= */
+        .races             { grid-column: 2; grid-row: 1; }
+        .fishing           { grid-column: 4; grid-row: 1; }
+        
+        .swords            { grid-column: 1; grid-row: 2; }
+        .islands           { grid-column: 3; grid-row: 2; }
+        .fighting-styles   { grid-column: 5; grid-row: 2; }
+        
+        .fruits            { grid-column: 2; grid-row: 3; }
+        .bosses            { grid-column: 4; grid-row: 3; }
+        
+        .accessories       { grid-column: 1; grid-row: 4; }
+        .battle-royale     { grid-column: 3; grid-row: 4; }
+        .traveling-merchant{ grid-column: 5; grid-row: 4; }
+        
+        .npcs              { grid-column: 2; grid-row: 5; }
+        .abilities         { grid-column: 4; grid-row: 5; }
+
+        /* Responsive para que no se rompa en celulares */
+        @media (max-width: 900px) {
+            .honeycomb { transform: scale(0.7); }
+        }
+        @media (max-width: 600px) {
+            .honeycomb { transform: scale(0.5); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="honeycomb">
+        <!-- FILA 1 -->
+        <a href="races.html" class="hex races">
+            <div class="hex-bg"></div>
+            <!-- Reemplaza el src con tu imagen de Razas -->
+            <img src="https://placehold.co/110x110/transparent/white?text=Races" alt="Races" class="hex-icon">
+            <span class="hex-text">Races</span>
+        </a>
+
+        <a href="fishing.html" class="hex fishing">
+            <div class="hex-bg"></div>
+            <img src="https://placehold.co/110x110/transparent/white?text=Fishing" alt="Fishing" class="hex-icon">
+            <span class="hex-text">Fishing</span>
+        </a>
+
+        <!-- FILA 2 -->
+        <a href="swords.html" class="hex swords">
+            <div class="hex-bg"></div>
+            <img src="https://placehold.co/110x110/transparent/white?text=Swords" alt="Swords" class="hex-icon">
+            <span class="hex-text">Swords</span>
+        </a>
+
+        <a href="islands.html" class="hex islands">
+            <div class="hex-bg"></div>
+            <img src="https://placehold.co/110x110/transparent/white?text=Islands" alt="Islands" class="hex-icon">
+            <span class="hex-text">Islands</span>
+        </a>
+
+        <a href="fighting.html" class="hex fighting-styles">
+            <div class="hex-bg"></div>
+            <img src="https://placehold.co/110x110/transparent/white?text=Fighting" alt="Fighting Styles" class="hex-icon">
+            <span class="hex-text">Fighting Styles</span>
+        </a>
+
+        <!-- FILA 3 -->
+        <a href="fruits.html" class="hex fruits">
+            <div class="hex-bg"></div>
+            <img src="https://placehold.co/110x110/transparent/white?text=Fruits" alt="Fruits" class="hex-icon">
+            <span class="hex-text">Fruits</span>
+        </a>
+
+        <a href="bosses.html" class="hex bosses">
+            <div class="hex-bg"></div>
+            <img src="https://placehold.co/110x110/transparent/white?text=Bosses" alt="Bosses" class="hex-icon">
+            <span class="hex-text">Bosses</span>
+        </a>
+
+        <!-- FILA 4 -->
+        <a href="accessories.html" class="hex accessories">
+            <div class="hex-bg"></div>
+            <img src="https://placehold.co/110x110/transparent/white?text=Accessories" alt="Accessories" class="hex-icon">
+            <span class="hex-text">Accessories</span>
+        </a>
+
+        <a href="battle-royale.html" class="hex battle-royale">
+            <div class="hex-bg"></div>
+            <img src="https://placehold.co/110x110/transparent/white?text=Battle+Royale" alt="Battle Royale" class="hex-icon">
+            <span class="hex-text">Battle Royale</span>
+        </a>
+
+        <a href="merchant.html" class="hex traveling-merchant">
+            <div class="hex-bg"></div>
+            <img src="https://placehold.co/110x110/transparent/white?text=Merchant" alt="Traveling Merchant" class="hex-icon">
+            <span class="hex-text">Traveling Merchant</span>
+        </a>
+
+        <!-- FILA 5 -->
+        <a href="npcs.html" class="hex npcs">
+            <div class="hex-bg"></div>
+            <img src="https://placehold.co/110x110/transparent/white?text=NPCs" alt="NPCs" class="hex-icon">
+            <span class="hex-text">NPCs</span>
+        </a>
+
+        <a href="abilities.html" class="hex abilities">
+            <div class="hex-bg"></div>
+            <img src="https://placehold.co/110x110/transparent/white?text=Abilities" alt="Abilities" class="hex-icon">
+            <span class="hex-text">Abilities</span>
+        </a>
+    </div>
+
+</body>
+</html>
